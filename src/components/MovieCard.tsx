@@ -4,7 +4,7 @@ type Props = {
   movie: {
     title: string;
     year: string;
-    country: string;
+    country?: string;
     poster: string;
   };
 };

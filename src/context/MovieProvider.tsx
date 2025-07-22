@@ -1,13 +1,12 @@
-import { useState } from 'react'
-import type { ReactNode } from "react"
-import { MovieContext } from './MovieContext'
-//import type { MovieContextType } from "./MovieContext"
-import type { Movie } from "../types"
+import { useState } from "react";
+import type { ReactNode } from "react";
+import { MovieContext } from "./MovieContext";
+import type { Movie } from "../types";
 
 export const MovieProvider = ({ children }: { children: ReactNode }) => {
-  const [search, setSearch] = useState('')
-  const [movies, setMovies] = useState<Movie[]>([])
-  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null)
+  const [search, setSearch] = useState("");
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 
   return (
     <MovieContext.Provider
@@ -15,5 +14,5 @@ export const MovieProvider = ({ children }: { children: ReactNode }) => {
     >
       {children}
     </MovieContext.Provider>
-  )
-}
+  );
+};

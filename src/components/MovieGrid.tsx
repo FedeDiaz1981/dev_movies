@@ -1,24 +1,14 @@
-import React from "react";
-import MovieCard from "./MovieCard";
+import { useMovieContext } from "../context/useMovieContext"
+import MovieCard from "./MovieCard"
 
-type Movie = {
-  id: string;
-  title: string;
-  year: string;
-  country: string;
-  poster: string;
-};
+export default function MovieGrid() {
+  const { movies } = useMovieContext()
 
-type Props = {
-  movies: Movie[];
-};
-
-export default function MovieGrid({ movies }: Props) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 px-4 mt-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-10 px-4">
       {movies.map((movie) => (
         <MovieCard key={movie.id} movie={movie} />
       ))}
     </div>
-  );
+  )
 }
