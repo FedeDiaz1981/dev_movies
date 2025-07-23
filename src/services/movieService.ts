@@ -6,19 +6,20 @@ type APIMovie = {
   Title: string;
   Year: string;
   Poster: string;
+  Country: string;
 };
 
 export const fetchMoviesByTitle = async (title: string) => {
-  const response = await fetch(`${API_URL}?apikey=${API_KEY}&s=${title}`);
+  const response = await fetch(`${API_URL}?apikey=${API_KEY}&s=${title}&plot=full`);
   const data = await response.json();
+  console.log(data);
 
   if (data.Response === "True") {
     return data.Search.map((movie: APIMovie) => ({
       id: movie.imdbID,
       title: movie.Title,
       year: movie.Year,
-      poster: movie.Poster,
-      country: "N/A"
+      poster: movie.Poster ?? "N/A",
     }));
   } else {
     return [];

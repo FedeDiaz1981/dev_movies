@@ -1,19 +1,20 @@
 import Navbar from "./components/Navbar";
-import { MovieProvider } from "./context/MovieProvider"
-import SearchBar from "./components/SearchBar"
-import MovieGrid from "./components/MovieGrid"
+import { MovieProvider } from "./context/MovieProvider";
+import SearchBar from "./components/SearchBar";
+import MovieGrid from "./components/MovieGrid";
 
 function App() {
   return (
-    
     <MovieProvider>
       <Navbar />
-      <div className="container">
+      <div className="px-8">
         <SearchBar />
-        <MovieGrid />
+        <div className="py-5">
+          <MovieGrid />
+        </div>
       </div>
     </MovieProvider>
-  )
+  );
 }
 
-export default App
+export default App;
