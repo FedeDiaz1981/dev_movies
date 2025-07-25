@@ -9,19 +9,44 @@ type APIMovie = {
   Country: string;
 };
 
-export const fetchMoviesByTitle = async (title: string) => {
-  const response = await fetch(`${API_URL}?apikey=${API_KEY}&s=${title}&plot=full`);
-  const data = await response.json();
-  console.log(data);
 
+
+export const fetchMoviesByTitle = async (title: string) => {
+  const response = await fetch(`${API_URL}?apikey=${API_KEY}&s=${title}`);
+  const data = await response.json();
+  
   if (data.Response === "True") {
     return data.Search.map((movie: APIMovie) => ({
       id: movie.imdbID,
       title: movie.Title,
       year: movie.Year,
-      poster: movie.Poster ?? "N/A",
+      country: "N/A", 
+      poster: movie.Poster,
     }));
   } else {
     return [];
   }
+};
+
+export const fetchMovieById = async (id: string) => {
+  const response = await fetch(`${API_URL}?apikey=${API_KEY}&i=${id}`);
+  const data = await response.json();
+
+  console.log("🔍 Movie data by ID:", data); 
+
+  if (data.Response === "True") {
+    return{
+      id: data.imdbID,
+      title: data.Title,
+      year: data.Year,
+      country: data.Country,
+      poster: data.Poster,
+      genre: data.Genre,
+      plot: data.Plot,
+      actors: data.Actors,
+      rating: data.imdbRating,
+    } 
+  }
+
+  return null;
 };
